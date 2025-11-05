@@ -1,0 +1,22 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace mini_blog.Models;
+
+public class Posts
+{
+    public int Id { get; set; }
+    public string Title { get; set; } = null!;
+    public string Content { get; set; } = null!;
+
+    [DataType(DataType.DateTime)]
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    public int AuthorId { get; set; }
+    public Users Author { get; set; } = null!;
+
+    public ICollection<Comments> Comments { get; set; } = new List<Comments>();
+
+    public List<PostCategory> PostCategories { get; set; } = new List<PostCategory>();
+
+}
