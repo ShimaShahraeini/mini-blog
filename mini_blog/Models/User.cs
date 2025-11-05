@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace mini_blog.Models;
 
-public class Users
+public class User
 {
     public int Id { get; set; }
 
@@ -16,6 +16,8 @@ public class Users
     [Required]
     public string PasswordHash { get; set; } = null!;
 
-    public ICollection<Posts> Posts { get; set; } = new List<Posts>();
+    public string Role { get; set; } = "User"; // "Admin" for superuser
+
+    public ICollection<Post> Posts { get; set; } = new List<Post>();
     public ICollection<Comments> Comments { get; set; } = new List<Comments>();
 }

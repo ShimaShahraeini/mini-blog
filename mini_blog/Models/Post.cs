@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace mini_blog.Models;
 
-public class Posts
+public class Post
 {
     public int Id { get; set; }
     public string Title { get; set; } = null!;
@@ -13,7 +13,7 @@ public class Posts
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public int AuthorId { get; set; }
-    public Users Author { get; set; } = null!;
+    public User Author { get; set; } = null!;
 
     public ICollection<Comments> Comments { get; set; } = new List<Comments>();
 

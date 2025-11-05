@@ -14,8 +14,8 @@ public class Comments
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public int PostId { get; set; }
-    public Posts Post { get; set; } = null!;
+    public Post Post { get; set; } = null!;
 
     public int AuthorId { get; set; }
-    public Users Author { get; set; } = null!;
+    public User Author { get; set; } = null!;
 }
