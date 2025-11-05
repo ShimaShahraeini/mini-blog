@@ -1,0 +1,37 @@
+## Ignore build outputs
+bin/
+obj/
+
+## Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Rider files
+.idea/
+
+## Visual Studio Code settings
+.vscode/
+
+## Dotnet Core cache
+*.dbmdl
+*.dbproj.schemaview
+*.pdb
+
+## Publish outputs
+publish/
+
+## Resharper
+_ReSharper*/
+*.DotSettings.user
+
+## Node / npm (if you add frontend)
+node_modules/
+
+## Logs
+*.log
+
+## Local appsettings overrides (optional, depends on your workflow)
+appsettings.Local.json
