@@ -1,31 +1,29 @@
 services:
   db:
     image: postgres:17
-    restart: always
     environment:
-      POSTGRES_USER: shima
-      POSTGRES_PASSWORD: shima123
-      POSTGRES_DB: blogdb
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mini_blog
     ports:
       - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U shima -d blogdb"]
-      interval: 5s
-      timeout: 3s
-      retries: 5
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
 
   web:
     build: .
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=db;Database=mini_blog;Username=postgres;Password=password"
+    ports:
+      - "8080:8080"
     depends_on:
       db:
-        condition: service_healthy   # ✅ Wait until DB healthcheck passes
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Host=db;Database=blogdb;Username=shima;Password=shima123
-    ports:
-      - "8000:8080"
+        condition: service_healthy
 
 volumes:
   pgdata:
