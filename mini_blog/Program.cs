@@ -3,9 +3,14 @@ using mini_blog.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Connect to PostgreSQL using your connection string from appsettings.json
+//Connect to MySQL using connection string from appsettings.json
 builder.Services.AddDbContext<BlogContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        new MySqlServerVersion(new Version(8,0,32)),
+        mySqlOptions => mySqlOptions.EnableRetryOnFailure()
+    )
+);
 
 
 var app = builder.Build();

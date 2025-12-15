@@ -1,4 +1,3 @@
-using System;
 using mini_blog.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,7 +15,7 @@ public class BlogContext : DbContext
     public DbSet<Comments> Comments { get; set; } = null!;
     public DbSet<PostCategory> PostCategories { get; set; } = null!;
 
-    //lives inside your DbContext, for Explicitly configuring how EF should map my C# classes to database tables.
+    //lives inside DbContext, for Explicitly configuring how EF should map C# classes to database tables.
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder); //calls the base DbContext version

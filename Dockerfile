@@ -13,5 +13,6 @@ RUN dotnet publish -c Release -o /app/out
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/out .
-ENTRYPOINT ["dotnet", "mini_blog.dll"]
+# Enable remote debugger
+ENTRYPOINT ["dotnet", "watch", "--no-hot-reload", "--non-interactive", "run"]
 

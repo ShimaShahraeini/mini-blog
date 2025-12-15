@@ -48,9 +48,9 @@
               "target": "Package",
               "version": "[9.0.10, )"
             },
-            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+            "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[9.0.0, )"
             }
           },
           "imports": [

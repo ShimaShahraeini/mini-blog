@@ -9,15 +9,16 @@ public static class DataExtension
     {
         using var scope = app.Services.CreateScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<BlogContext>();
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
         try
         {
             await dbContext.Database.MigrateAsync();
-            Console.WriteLine("Database migrated successfully.");
+            logger.LogInformation("Database migrated successfully.");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Migration failed: {ex.Message}");
+            logger.LogError(ex, "Migration failed!");
             throw;
         }
     }
@@ -27,15 +28,16 @@ public static class DataExtension
     {
         using var scope = app.Services.CreateScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<BlogContext>();
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
         try
         {
-            await DbInitializer.SeedAsync(dbContext);
-            Console.WriteLine("Database seeding completed.");
+            await DbInitializer.SeedAsync(dbContext, logger);
+            logger.LogInformation("Database seeding completed.");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Seeding failed: {ex.Message}");
+            logger.LogError(ex, "Seeding failed!");
             throw;
         }
     }

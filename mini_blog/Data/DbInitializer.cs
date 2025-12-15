@@ -5,7 +5,7 @@ namespace mini_blog.Data;
 
 public static class DbInitializer
 {
-    public static async Task SeedAsync(BlogContext context)
+    public static async Task SeedAsync(BlogContext context, ILogger logger)
     {
         try
         {
@@ -21,11 +21,7 @@ public static class DbInitializer
                 };
                 context.Users.Add(admin);
                 await context.SaveChangesAsync();
-                Console.WriteLine("Admin user created.");
-            }
-            else
-            {
-                Console.WriteLine("Admin user already exists.");
+                logger.LogInformation("Admin user created.");
             }
 
             // Seed Categories
@@ -37,12 +33,12 @@ public static class DbInitializer
                     new Category { Name = "Lifestyle" }
                 );
                 await context.SaveChangesAsync();
-                Console.WriteLine("Default categories added.");
+                logger.LogInformation("Default categories added.");
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error during seeding: {ex.Message}");
+            logger.LogError(ex, $"Error during seeding: {ex.Message}");
             throw;
         }
     }
