@@ -12,7 +12,7 @@ public class BlogContext : DbContext
     public DbSet<Post> Posts { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<Category> Categories { get; set; } = null!;
-    public DbSet<Comments> Comments { get; set; } = null!;
+    public DbSet<Comment> Comments { get; set; } = null!;
     public DbSet<PostCategory> PostCategories { get; set; } = null!;
 
     //lives inside DbContext, for Explicitly configuring how EF should map C# classes to database tables.

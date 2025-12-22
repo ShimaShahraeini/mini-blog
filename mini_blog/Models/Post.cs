@@ -15,7 +15,7 @@ public class Post
     public int AuthorId { get; set; }
     public User Author { get; set; } = null!;
 
-    public ICollection<Comments> Comments { get; set; } = new List<Comments>();
+    public ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
     public List<PostCategory> PostCategories { get; set; } = new List<PostCategory>();
 
